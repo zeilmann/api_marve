@@ -108,6 +108,7 @@ export default {
       });
 
       this.totalResults = characters.data.total;
+      
     },
     /**
      * Fill characters array with given offset

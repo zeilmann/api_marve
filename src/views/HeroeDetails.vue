@@ -15,10 +15,17 @@
             <div slot="media" class="teste">
              
            <img :src="character.thumbnail.path + '.' + character.thumbnail.extension" >
+           <h2>Some Comics</h2>
+           <p v-for="comic_detais in comics_1" >
+            
+          {{comic_detais.title}}
+           
+           </p>
                
             </div>
             
             <div>
+              <h4>Description</h4>
               <p v-if="character.description">{{ character.description }}</p>
               <p v-else>Sorry, no description available.</p>
          
@@ -56,6 +63,8 @@ export default {
       popup2: false,
       team: null,
       isInMyTeam: false,
+      comics_ :[],
+      comics_1 :[]
     };
   },
   created() {
@@ -65,7 +74,10 @@ export default {
     if (typeof this.team === 'undefined') {
       this.team = [];
     }
+    
   },
+
+  
   computed: {
     thumbnailCharacter() {
       if (!this.loading) {
@@ -82,7 +94,13 @@ export default {
     async fillCharacter(id) {
       const character = await MarvelApiService.findCharacterById(id);
       this.character = character.data.results[0];
-      
+      const comics_ = await MarvelApiService.findCharacterBydetails(id);
+
+      comics_.data.results.forEach((item) => {
+       
+         this.comics_1.push(item);    
+                                            })
+     
       this.$vs.loading.close();
       this.loading = false;
 

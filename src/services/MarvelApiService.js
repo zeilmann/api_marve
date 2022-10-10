@@ -5,6 +5,12 @@ const MARVEL_API = "https://gateway.marvel.com/v1/public";
 
 export default {
 
+  async findCharacterBydetails(id_person, limit = 2 ){
+    return fetch(`${MARVEL_API}/characters/${id_person}/comics?${api_key_hash.toString()}&limit=${limit}`)
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+  },
+
    async findAllCharacters(offset = 0, limit = 10) {
     return fetch(`${MARVEL_API}/characters?${api_key_hash.toString()}&orderBy=name&offset=${offset}&limit=${limit}`)
       .then((response) => response.json())
