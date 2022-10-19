@@ -63,9 +63,9 @@
 
             <vs-popup class="holamundo"  title="Set new name!" :active.sync="popupActivo1">
               <p>
-                <vs-input icon-after="true" label-placeholder="icon-after" icon="mode_edit" :placeholder= "id_var" v-model="value2"/>
+                <vs-input icon-after="true" icon="mode_edit" v-model="value2"/>
                 <br>
-                <vs-button @click="changeCharacterName(id_var, value2)" color="success" type="filled">Change Name Now!</vs-button>
+                <vs-button @click="changeCharacterName(id_var, value2), popupActivo1 = false" color="success" type="filled">Change Name Now!</vs-button>
               </p>
             </vs-popup>
           </div>
@@ -338,8 +338,6 @@
     margin: auto;
     display: block;
     margin-top: 5px;
-    
-    
     
    };
 
