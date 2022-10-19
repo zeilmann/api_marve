@@ -22,8 +22,12 @@
              <div class="row d-flex justify-content-center">
 
               <div v-for="index in teste" class="card" style="width: 18rem;">
+                <router-link :to="{ name: 'HeroeDetails', params: { id: index.id }}">
+
+                
                 <img v-if="index.thumbnail.extension === ''" :src="index.thumbnail.path">
                 <img v-else :src="index.thumbnail.path + '.' + index.thumbnail.extension">
+              </router-link>
                 <div class="card-body">
                   <vs-button @click="popupActivo1 = true, id_var = index.id" color="success" type="flat" icon="edit"></vs-button>
                   <h5 class="card-title">{{index.name}}</h5>
@@ -272,7 +276,7 @@
   };
   </script>
 
-  <style>
+  <style scoped>
 
  img{
   width:30%;
@@ -342,4 +346,4 @@
  }
 
   
- </style>
+ </style scoped>

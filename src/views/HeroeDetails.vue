@@ -133,7 +133,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 
 .teste {
   
@@ -148,4 +148,4 @@ img #img{
   
 }
 
-</style>
+</style scoped>

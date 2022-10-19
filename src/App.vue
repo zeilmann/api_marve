@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vs-navbar class="nabarx" color="blue" text-color="white">
+    <vs-navbar class="nabarx" >
       <div slot="title">
         <vs-navbar-title style="color: white">
           <router-link style="color: white" to="/">Heroes</router-link>

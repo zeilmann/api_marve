@@ -16,21 +16,11 @@
                       v-model="search"/>
           </form>
         </vs-row>
-        <vs-row class="teste11" vs-align="stretch" vs-type="flex" vs-justify="stretch" vs-w="12">
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ perPage }} results per page</vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
-           
-            <vs-button color="primary" type="filled" @click="prevPage" :disabled="currentPage <= 0"
-                       style="margin-right: 10px">Previous
-            </vs-button>
-            {{ currentPage + 1 }} / {{ countPages }}<br>
-            <vs-button class="principal_button" color="primary" type="filled" @click="nextPage" :disabled="currentPage >= countPages - 1"
-                       style="margin-left: 10px">Next Page
-            </vs-button>
-          
-            </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ totalResults }} results</vs-col>
-        </vs-row>
+        <vs-row class="teste11" vs-align="stretch" vs-type="flex" vs-justify="center" vs-w="12">
+          <div>
+            <vs-pagination max="7"  @change="pagination()" :total=countPages  v-model="currentx" ></vs-pagination>
+          </div>
+          </vs-row>
         <vs-card>
           <div>
             <vs-list>
@@ -38,20 +28,16 @@
             </vs-list>
           </div>
         </vs-card>
-        <vs-row vs-align="stretch" vs-type="flex" vs-justify="stretch" vs-w="12">
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ perPage }} results per page</vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
-            <vs-button color="primary" type="filled" @click="prevPage" :disabled="currentPage <= 0"
-                       style="margin-right: 10px">Previous
-            </vs-button>
-            {{ currentPage + 1 }} / {{ countPages }}<br>
-            <vs-button color="primary" type="filled" @click="nextPage" :disabled="currentPage >= countPages - 1"
-                       style="margin-left: 10px">Next Page
-            </vs-button>
-          </vs-col>
-          <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ totalResults }} results</vs-col>
-        </vs-row>
-
+       
+          
+        <vs-row class="teste11" vs-align="stretch" vs-type="flex" vs-justify="center" vs-w="12">
+          <div>
+            <vs-pagination max="7"  @change="pagination()" :total=countPages  v-model="currentx" ></vs-pagination>
+          </div>
+          </vs-row>
+          
+        
+       
       </vs-col>
     </vs-row>
   </div>
@@ -72,6 +58,7 @@ export default {
       totalResults: 0,
       characters: [],
       search: null,
+      currentx: 1
     };
   },
   computed: {
@@ -86,6 +73,8 @@ export default {
   created() {
     this.fillCharacters();
     this.debouncedGetSearchResult = _.debounce(this.getSearchResult, 350); //
+    pagination();
+
   },
   watch: {
     
@@ -123,6 +112,15 @@ export default {
       this.currentPage -= 1;
       this.fillCharacters(this.calculOffset());
     },
+
+    pagination(){
+      
+      let calculo_novo1 = this.currentx * this.perPage;
+      let calculo_novo2 = this.perPage
+      calculo_novo1 = calculo_novo1 - calculo_novo2
+      this.fillCharacters(calculo_novo1);
+
+    },
     
     async getSearchResult() {
       if (this.search === '') {
@@ -136,9 +134,11 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 
+h1{
+  font-family: Lucida Console;
+  }
 
-
-
-</style>
+  
+</style scoped>
