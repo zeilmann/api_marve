@@ -14,7 +14,7 @@
             </div>
             <div slot="media" class="teste">
              
-           <img :src="character.thumbnail.path + '.' + character.thumbnail.extension" >
+           <img id="image" :src="character.thumbnail.path + '.' + character.thumbnail.extension" >
            <h2>Some Comics</h2>
            <p v-for="comic_detais in comics_1" >
             
@@ -95,6 +95,7 @@ export default {
       const character = await MarvelApiService.findCharacterById(id);
       this.character = character.data.results[0];
       const comics_ = await MarvelApiService.findCharacterBydetails(id);
+      console.log(comics_);
 
       comics_.data.results.forEach((item) => {
        
@@ -109,11 +110,12 @@ export default {
     
     addInMyTeam() {
       if (!this.team.includes(this.character.id)) {
-        this.team.push(this.character.id);
+        this.team.push(this.character);
         this.popup = true;
       }
       this.$session.set('team', this.team);
       this.isInMyTeam = true;
+      console.log(this.team);
     },
     
     deleteFromMyTeam() {
@@ -138,11 +140,12 @@ export default {
   margin: 15px;
        }
 
-img{
+img #img{
   width:100%;
   max-width:800px;
   margin: auto;
   display: block;
+  
 }
 
 </style>

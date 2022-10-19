@@ -5,6 +5,7 @@
         <template slot="avatar">
           <vs-avatar size="large" :src="heroe.thumbnail.path + '.' + heroe.thumbnail.extension"
                      :height="50"/>
+                     
         </template>
       </vs-list-item>
     </router-link>

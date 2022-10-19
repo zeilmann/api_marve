@@ -16,17 +16,19 @@
                       v-model="search"/>
           </form>
         </vs-row>
-        <vs-row vs-align="stretch" vs-type="flex" vs-justify="stretch" vs-w="12">
+        <vs-row class="teste11" vs-align="stretch" vs-type="flex" vs-justify="stretch" vs-w="12">
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ perPage }} results per page</vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
+           
             <vs-button color="primary" type="filled" @click="prevPage" :disabled="currentPage <= 0"
                        style="margin-right: 10px">Previous
             </vs-button>
             {{ currentPage + 1 }} / {{ countPages }}<br>
-            <vs-button color="primary" type="filled" @click="nextPage" :disabled="currentPage >= countPages - 1"
+            <vs-button class="principal_button" color="primary" type="filled" @click="nextPage" :disabled="currentPage >= countPages - 1"
                        style="margin-left: 10px">Next Page
             </vs-button>
-          </vs-col>
+          
+            </vs-col>
           <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">{{ totalResults }} results</vs-col>
         </vs-row>
         <vs-card>
@@ -73,9 +75,7 @@ export default {
     };
   },
   computed: {
-    /**
-     * Calcul pages number based on totalResults and perPage values
-     */
+    
     countPages() {
       return Math.ceil(this.totalResults / this.perPage);
     },
@@ -88,7 +88,7 @@ export default {
     this.debouncedGetSearchResult = _.debounce(this.getSearchResult, 350); //
   },
   watch: {
-    // When search field is updated
+    
     search() {
       this.debouncedGetSearchResult();
     },
@@ -97,9 +97,7 @@ export default {
     calculOffset() {
       return this.currentPage * this.perPage;
     },
-    /**
-     * Fill characters array with given characters
-     */
+    
     fillCharactersArray(characters) {
       this.characters = [];
 
@@ -110,17 +108,13 @@ export default {
       this.totalResults = characters.data.total;
       
     },
-    /**
-     * Fill characters array with given offset
-     */
+    
     async fillCharacters(offset) {
       this.$vs.loading();
       this.fillCharactersArray(await MarvelApiService.findAllCharacters(offset));
       this.$vs.loading.close();
     },
-    /**
-     * Update currentPage variable and get new characters with offset
-     */
+    
     nextPage() {
       this.currentPage += 1;
       this.fillCharacters(this.calculOffset());
@@ -129,9 +123,7 @@ export default {
       this.currentPage -= 1;
       this.fillCharacters(this.calculOffset());
     },
-    /**
-     * Get characters based on search value
-     */
+    
     async getSearchResult() {
       if (this.search === '') {
         return this.fillCharacters();
@@ -142,3 +134,11 @@ export default {
   },
 };
 </script>
+
+
+<style>
+
+
+
+
+</style>
