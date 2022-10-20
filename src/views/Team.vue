@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="all_body">
       <vs-row vs-align="flex-start"
               vs-type="flex" vs-justify="center" vs-w="12">
         <vs-col vs-lg="6" vs-sm="10" vs-xs="12">
@@ -145,26 +145,12 @@
            
       async listarHerois () {
 
-
-
-        const ids = this.$session.get('team');
-
+       const ids = this.$session.get('team');
         if (ids === undefined){
-          
           ids = [];
-
         }else{
-            console.log(ids);
-
-            this.teste = ids;
-
-            console.log(this.teste);
+           this.teste = ids;
         }
-
-        
-
-       
-
       },
 
        deleteTeam() {
@@ -186,13 +172,9 @@
         this.popupActivo = false;
 
         }else{
-        console.log(filtrado);
-
+     
         this.teste = filtrado;
-
         this.$session.set('team', this.teste);
-
-        console.log(this.teste);
         this.popupActivo = false;
 
         };
@@ -202,16 +184,11 @@
       
       changeCharacterName(id, value_Name){
 
-       
         var filtrado = this.teste.filter(function(obj) { return obj.id === id; });
-     
-        if ( value_Name === "") {alert('Coloque O Nome');}
-
+        if ( value_Name === "") {alert('Please set name!');}
         else {
           filtrado[0].name = value_Name;
-          
           this.$session.set('team', this.teste);
-
            }
 
        
@@ -227,7 +204,6 @@
               filtrado[0].thumbnail.path = this.teste2;
               filtrado[0].thumbnail.extension = "";
               this.$session.set('team', this.teste);
-
               this.selectedFile = "";
 
                   },
@@ -283,53 +259,38 @@
   margin: auto;
   display: block;
   margin-top: 5px;
-  
-  
-  
- };
-
  
+ };
 
  h3 {
   border-radius: 1px;
   border: 10px;
-
  }
 
  .seletor_1 {
-
   float: left;
-
-
-
  }
 
  .seletor_1 {
-
   display: inline-block !;
   border-radius: 1px;
-
  }
 
  .card {
-
   margin: 2px;
  }
 
  .col {
-
   border-style: solid;
  }
 
  .list-group {
-
   margin: 5px 20px;
  }
 
  @media screen and (max-width: 600px) {
 
   .list-group {
-
     margin: 1px;
   }
 
@@ -338,10 +299,24 @@
     margin: auto;
     display: block;
     margin-top: 5px;
-    
-   };
+     };
 
- }
+    };
+
+    .all_body {
+
+      background-color: #8BC6EC;
+      background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+    }
+
+    .vs-card--content {
+      padding: 10px;
+      font-size: .8rem;
+      margin-bottom: 15px;
+      background-color: #8BC6EC;
+      background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+  }
 
   
  </style scoped>

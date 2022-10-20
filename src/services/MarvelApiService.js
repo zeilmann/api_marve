@@ -21,14 +21,7 @@ export default {
       .then((response) => response.json())
       .catch((err) => console.log(err));
   },
-  async findRandomCharacters(limit = 10) {
-    const totalCharacters = 1493;
-    const offset = MathService.getRandomInt(0, totalCharacters - limit);
-
-    return fetch(`${MARVEL_API}/characters?${api_key_hash.toString()}&orderBy=modified&offset=${offset}&limit=${limit}`)
-      .then((response) => response.json())
-      .catch((err) => console.log(err));
-  },
+  
   async findCharacterByName(name) {
     return fetch(`${MARVEL_API}/characters?${api_key_hash.toString()}&orderBy=name&nameStartsWith=${name}`)
       .then((response) => response.json())

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="teste1">
     <vs-row vs-align="flex-start" vs-type="flex" vs-justify="center" vs-w="12"
             style="margin-bottom: 50px;">
       <vs-col vs-lg="6" vs-sm="10" vs-xs="12">
@@ -139,6 +139,14 @@ export default {
 h1{
   font-family: Lucida Console;
   }
+
+  .teste1 {
+
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+    
+};
+
 
   
 </style scoped>
